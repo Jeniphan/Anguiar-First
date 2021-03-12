@@ -1,1 +1,15 @@
-<p>header works!</p>
+<mat-toolbar color="primary">
+    <span>JNP Shop</span>
+    <span class="flex-fill"></span>
+    <button mat-icon-button aria-label="Example icon-button with a heart icon">
+        <mat-icon>search</mat-icon>
+    </button>
+    <div class="vl"></div>
+    <button mat-icon-button aria-label="Example icon-button with a heart icon">
+        <mat-icon>home</mat-icon>
+    </button>
+    <div class="vl"></div>
+    <button mat-icon-button aria-label="Example icon-button with a heart icon">
+        <mat-icon [matBadge]="demoMailNoti" matBadgeColor="warn">notifications_none</mat-icon>
+    </button>
+</mat-toolbar>

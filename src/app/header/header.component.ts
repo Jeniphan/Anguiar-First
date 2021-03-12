@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  demoMailNoti = 50;
   constructor() { }
 
   ngOnInit(): void {
