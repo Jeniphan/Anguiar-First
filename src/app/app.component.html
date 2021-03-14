@@ -1,1 +1,9 @@
-<app-header></app-header>
+<mat-sidenav-container class="example-container">
+    <mat-sidenav #sidenav mode="over" opened="fales">
+        <button mat-button>Click</button>
+        <button mat-button>Click</button>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <app-header (navtoggle)="sidenav.toggle()"></app-header>
+    </mat-sidenav-content>
+</mat-sidenav-container>
