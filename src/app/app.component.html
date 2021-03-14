@@ -1,5 +1,5 @@
 <mat-sidenav-container class="example-container">
-    <mat-sidenav #sidenav mode="over" opened="fales">
+    <mat-sidenav #sidenav mode="over" [opened]="mobileQueryMax.matches ? false : true">
         <button mat-button>Click</button>
         <button mat-button>Click</button>
     </mat-sidenav>
