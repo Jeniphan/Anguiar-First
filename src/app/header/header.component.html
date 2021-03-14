@@ -1,15 +1,37 @@
 <mat-toolbar color="primary">
-    <span>JNP Shop</span>
+    <span>JNP Store</span>
     <span class="flex-fill"></span>
-    <button mat-icon-button aria-label="Example icon-button with a heart icon">
-        <mat-icon>search</mat-icon>
+    <div class="d-flex align-items-center"><button mat-icon-button aria-label="Example icon-button with a heart icon">
+            <mat-icon>search</mat-icon>
+        </button>
+        <div class="vl"></div>
+        <button mat-icon-button aria-label="Example icon-button with a heart icon">
+            <mat-icon>home</mat-icon>
+        </button>
+        <div class="vl"></div>
+        <button mat-icon-button aria-label="Example icon-button with a heart icon">
+            <mat-icon [matBadge]="demoMailNoti" matBadgeColor="warn">favorite_border</mat-icon>
+        </button>
+    </div>
+
+    <button mat-button [matMenuTriggerFor]="list">
+        <img class="avatar rounded-circle bg-white"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/1200px-Angular_full_color_logo.svg.png"
+            alt="">
+        <span class="ml-2">Admin</span>
     </button>
-    <div class="vl"></div>
-    <button mat-icon-button aria-label="Example icon-button with a heart icon">
-        <mat-icon>home</mat-icon>
-    </button>
-    <div class="vl"></div>
-    <button mat-icon-button aria-label="Example icon-button with a heart icon">
-        <mat-icon [matBadge]="demoMailNoti" matBadgeColor="warn">notifications_none</mat-icon>
-    </button>
+    <mat-menu #list="matMenu">
+        <button mat-menu-item>
+            <mat-icon>assignment_ind</mat-icon>
+            <span>Profile</span>
+        </button>
+        <button mat-menu-item>
+            <mat-icon>shopping_cart</mat-icon>
+            <span>Your Order</span>
+        </button>
+        <button mat-menu-item>
+            <mat-icon>logout</mat-icon>
+            <span>Logout</span>
+        </button>
+    </mat-menu>
 </mat-toolbar>

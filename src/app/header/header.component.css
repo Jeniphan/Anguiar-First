@@ -1,6 +1,12 @@
 .example-spacer {
     flex: 1 1 auto;
 }
+.avatar{
+    border: 1px solid #6a7ace;
+    object-fit: cover;
+    height: 1.5rem;
+    width: 1.5rem;
+}
 
 .vl {
     border-left: 1px solid #6a7ace;
