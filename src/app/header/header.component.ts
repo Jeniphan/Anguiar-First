@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -6,10 +6,12 @@ import { Component, OnInit, Output, EventEmitter} from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
-  @Output() navtoggle = new EventEmitter();
+  
+  @Input("medie_query") mobileQueryMax: boolean;
+  @Output("toggle") navtoggle = new EventEmitter();
   demoMailNoti = 50;
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
