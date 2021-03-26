@@ -10,7 +10,9 @@ export class HeaderComponent implements OnInit {
   @Input("medie_query") mobileQueryMax: boolean;
   @Output("toggle") navtoggle = new EventEmitter();
   demoMailNoti = 50;
+
   constructor() {
+    console.log(this.mobileQueryMax);
   }
 
   ngOnInit(): void {
