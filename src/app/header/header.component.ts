@@ -9,7 +9,7 @@ export class HeaderComponent implements OnInit {
   
   @Input("medie_query") mobileQueryMax: boolean;
   @Output("toggle") navtoggle = new EventEmitter();
-  demoMailNoti = 50;
+  demoMailNoti = 60;
 
   constructor() {
     console.log(this.mobileQueryMax);

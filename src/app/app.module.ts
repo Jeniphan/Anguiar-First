@@ -15,14 +15,20 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
-
+import { StockHomeComponent } from './stock/stock-home/stock-home.component';
+import { StockCreateComponent } from './stock/stock-create/stock-create.component';
+import { StockEditComponent } from './stock/stock-edit/stock-edit.component';
+import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    SideNavComponent
+    SideNavComponent,
+    StockHomeComponent,
+    StockCreateComponent,
+    StockEditComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +41,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatMenuModule,
     MatSidenavModule,
     MatListModule,
-    MatDividerModule
+    MatDividerModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
