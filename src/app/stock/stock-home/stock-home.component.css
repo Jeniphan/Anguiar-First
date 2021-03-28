@@ -2,3 +2,8 @@
     height: 3.5rem;
     width: 3.5;
 }
+
+th.mat-column-image,
+td.mat-column-image {
+    width: 100px;
+}
