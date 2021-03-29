@@ -13,6 +13,8 @@ export class StockHomeComponent implements OnInit {
 
   dataSource = new MatTableDataSource<Product>();
 
+  textSearch: string;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -21,7 +23,7 @@ export class StockHomeComponent implements OnInit {
 
   feedData() {
     const dummy: Product[] = [{
-      name: "Inventore quis sed eligendi eos. Ut qui autem rerum in fugiat et nam velit. Blanditiis possimus qui magni ex officia. Officia architecto qui ex consequatur sit consequatur deserunt recusandae.",
+      name: "Inventore quis sed eligendi eos.",
       stock: 10,
       price: 900,
       image: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-gold-select-201810?wid=892&hei=820&&qlt=80&.v=1603332211000"
@@ -52,5 +54,18 @@ export class StockHomeComponent implements OnInit {
     },
     ]
     this.dataSource.data = dummy
+  }
+
+  search(event: Event | '') {
+    let fliterValue = '';
+    if (event) {
+      fliterValue = (event.target as HTMLInputElement).value;
+    }
+    this.dataSource.filter = fliterValue.trim().toLowerCase();
+  }
+
+  clearSearch() {
+    this.textSearch = '';
+    this.search('');
   }
 }

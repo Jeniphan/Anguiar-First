@@ -5,7 +5,6 @@
             <div class="d-flex flex-column">
                 <div class="h6 mb-0">Stock</div>
                 <div class="h6 mb-0">0</div>
-                <div class="h6 mb-0">Stock</div>
             </div>
         </mat-card>
 
@@ -16,7 +15,6 @@
             <div class="d-flex flex-column">
                 <div class="h6 mb-0">Defect</div>
                 <div class="h6 mb-0">0</div>
-                <div class="h6 mb-0">Stock</div>
             </div>
         </mat-card>
 
@@ -27,14 +25,22 @@
             <div class="d-flex flex-column">
                 <div class="h6 mb-0">Out of Stock</div>
                 <div class="h6 mb-0">0</div>
-                <div class="h6 mb-0">Stock</div>
             </div>
         </mat-card>
 
     </div>
 </div>
 <div class="mat-elevation-z8 mt-3 table-responsive">
-    <table mat-table [dataSource]="dataSource" class=" w-100 table-striped table-hover ">
+    <div>
+        <mat-form-field appearance="outline">
+            <mat-label>Search Product</mat-label>
+            <input [(ngModel)]="textSearch" (keyup)="search($event)" matInput placeholder="name,price,stock">
+            <mat-icon matSuffix *ngIf="!textSearch">search</mat-icon>
+            <button (click)="clearSearch()" mat-icon-button matSuffix *ngIf="textSearch"><mat-icon>close</mat-icon></button>
+        </mat-form-field>
+    </div>
+
+    <table mat-table [dataSource]="dataSource" class=" w-100 table-striped table-hover mt-3">
 
         <ng-container matColumnDef="image">
             <th mat-header-cell *matHeaderCellDef class="text-uppercase text-center"> Image </th>
