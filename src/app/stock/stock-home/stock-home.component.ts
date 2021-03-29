@@ -21,7 +21,7 @@ export class StockHomeComponent implements OnInit {
 
   feedData() {
     const dummy: Product[] = [{
-      name: "mac book",
+      name: "Inventore quis sed eligendi eos. Ut qui autem rerum in fugiat et nam velit. Blanditiis possimus qui magni ex officia. Officia architecto qui ex consequatur sit consequatur deserunt recusandae.",
       stock: 10,
       price: 900,
       image: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-gold-select-201810?wid=892&hei=820&&qlt=80&.v=1603332211000"
