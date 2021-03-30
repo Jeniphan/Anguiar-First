@@ -46,6 +46,18 @@ td.mat-cell {
     background-color: #d6f5d1;
 }
 
+::ng-deep th.mat-column-price>.mat-sort-header-container {
+    justify-content: flex-end;
+}
+
+::ng-deep th.mat-column-stock>.mat-sort-header-container {
+    justify-content: center;
+}
+
+::ng-deep .mat-sort-header-arrow {
+    color: red;
+}
+
 @media(max-width: 600px) {
     th.mat-header-cell:nth-child(2) {
         min-width: 400px;
@@ -55,5 +67,14 @@ td.mat-cell {
     th.mat-header-cell:nth-child(3),
     th.mat-header-cell:nth-child(4) {
         padding: 0 12px;
+    }
+    .serach_form {
+        flex-direction: column;
+        align-items: stretch !important;
+        margin: 12px 0px;
+    }
+    .serach_form>.mat-form-field {
+        width: 100% !important;
+        margin-bottom: 12px;
     }
 }

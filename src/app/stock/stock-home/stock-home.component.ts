@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Product } from 'src/app/models/product.model';
 
@@ -13,42 +15,77 @@ export class StockHomeComponent implements OnInit {
 
   dataSource = new MatTableDataSource<Product>();
 
-  textSearch: string;
+  textSearch: any;
+
+  @ViewChild(MatSort, { static: true }) sort: MatSort
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator
 
   constructor() { }
 
   ngOnInit(): void {
+    this.dataSource.sort = this.sort
+    this.dataSource.paginator = this.paginator
     this.feedData();
   }
 
   feedData() {
     const dummy: Product[] = [{
       name: "Inventore quis sed eligendi eos.",
-      stock: 10,
+      stock: 1001,
       price: 900,
       image: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-gold-select-201810?wid=892&hei=820&&qlt=80&.v=1603332211000"
     },
     {
       name: "mac book",
-      stock: 9,
+      stock: 908,
       price: 900,
       image: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-gold-select-201810?wid=892&hei=820&&qlt=80&.v=1603332211000"
     },
     {
       name: "mac book",
-      stock: 8,
+      stock: 821,
       price: 900,
       image: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-gold-select-201810?wid=892&hei=820&&qlt=80&.v=1603332211000"
     },
     {
       name: "mac book",
-      stock: 10,
+      stock: 104,
       price: 900,
       image: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-gold-select-201810?wid=892&hei=820&&qlt=80&.v=1603332211000"
     },
     {
       name: "mac book",
-      stock: 7,
+      stock: 787,
+      price: 900,
+      image: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-gold-select-201810?wid=892&hei=820&&qlt=80&.v=1603332211000"
+    },
+    {
+      name: "Inventore quis sed eligendi eos.",
+      stock: 1001,
+      price: 900,
+      image: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-gold-select-201810?wid=892&hei=820&&qlt=80&.v=1603332211000"
+    },
+    {
+      name: "mac book",
+      stock: 908,
+      price: 900,
+      image: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-gold-select-201810?wid=892&hei=820&&qlt=80&.v=1603332211000"
+    },
+    {
+      name: "mac book",
+      stock: 821,
+      price: 900,
+      image: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-gold-select-201810?wid=892&hei=820&&qlt=80&.v=1603332211000"
+    },
+    {
+      name: "mac book",
+      stock: 104,
+      price: 900,
+      image: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-gold-select-201810?wid=892&hei=820&&qlt=80&.v=1603332211000"
+    },
+    {
+      name: "mac book",
+      stock: 787,
       price: 900,
       image: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-gold-select-201810?wid=892&hei=820&&qlt=80&.v=1603332211000"
     },
@@ -56,16 +93,17 @@ export class StockHomeComponent implements OnInit {
     this.dataSource.data = dummy
   }
 
-  search(event: Event | '') {
+  search(event: Event) {
     let fliterValue = '';
     if (event) {
       fliterValue = (event.target as HTMLInputElement).value;
     }
+    console.log(typeof fliterValue);
     this.dataSource.filter = fliterValue.trim().toLowerCase();
   }
 
   clearSearch() {
     this.textSearch = '';
-    this.search('');
+    this.search(null!);
   }
 }
