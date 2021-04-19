@@ -7,6 +7,7 @@ import { StockCreateComponent } from './stock/stock-create/stock-create.componen
 import { StockEditComponent } from './stock/stock-edit/stock-edit.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from "@angular/common/http";
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -25,6 +26,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { httpInterceptorProviders } from './interceptors';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
@@ -55,7 +58,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatSortModule,
     MatPaginatorModule
   ],
-  providers: [],
+  providers: [
+    httpInterceptorProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

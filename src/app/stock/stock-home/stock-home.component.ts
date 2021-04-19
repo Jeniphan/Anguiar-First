@@ -1,8 +1,10 @@
+import Swal from 'sweetalert2';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Product } from 'src/app/models/product.model';
+import { Product, ProductResponse } from 'src/app/models/product.model';
+import { NetwortService } from 'src/app/service/networt.service';
 
 @Component({
   selector: 'app-stock-home',
@@ -20,7 +22,7 @@ export class StockHomeComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator
 
-  constructor() { }
+  constructor(private networkService: NetwortService) { }
 
   ngOnInit(): void {
     this.dataSource.sort = this.sort
@@ -29,68 +31,21 @@ export class StockHomeComponent implements OnInit {
   }
 
   feedData() {
-    const dummy: Product[] = [{
-      name: "Inventore quis sed eligendi eos.",
-      stock: 1001,
-      price: 900,
-      image: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-gold-select-201810?wid=892&hei=820&&qlt=80&.v=1603332211000"
-    },
-    {
-      name: "mac book",
-      stock: 908,
-      price: 900,
-      image: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-gold-select-201810?wid=892&hei=820&&qlt=80&.v=1603332211000"
-    },
-    {
-      name: "mac book",
-      stock: 821,
-      price: 900,
-      image: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-gold-select-201810?wid=892&hei=820&&qlt=80&.v=1603332211000"
-    },
-    {
-      name: "mac book",
-      stock: 104,
-      price: 900,
-      image: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-gold-select-201810?wid=892&hei=820&&qlt=80&.v=1603332211000"
-    },
-    {
-      name: "mac book",
-      stock: 787,
-      price: 900,
-      image: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-gold-select-201810?wid=892&hei=820&&qlt=80&.v=1603332211000"
-    },
-    {
-      name: "Inventore quis sed eligendi eos.",
-      stock: 1001,
-      price: 900,
-      image: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-gold-select-201810?wid=892&hei=820&&qlt=80&.v=1603332211000"
-    },
-    {
-      name: "mac book",
-      stock: 908,
-      price: 900,
-      image: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-gold-select-201810?wid=892&hei=820&&qlt=80&.v=1603332211000"
-    },
-    {
-      name: "mac book",
-      stock: 821,
-      price: 900,
-      image: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-gold-select-201810?wid=892&hei=820&&qlt=80&.v=1603332211000"
-    },
-    {
-      name: "mac book",
-      stock: 104,
-      price: 900,
-      image: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-gold-select-201810?wid=892&hei=820&&qlt=80&.v=1603332211000"
-    },
-    {
-      name: "mac book",
-      stock: 787,
-      price: 900,
-      image: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-gold-select-201810?wid=892&hei=820&&qlt=80&.v=1603332211000"
-    },
-    ]
-    this.dataSource.data = dummy
+    this.networkService.getProducts().subscribe(
+      data => {
+        this.dataSource.data = data.map(item => {
+          item.image = this.networkService.getProductImageURL(item.image)
+          return item;
+        })
+      },
+      error => {
+        alert(error)
+      },
+      () => {
+        console.log("feed network done")
+      }
+    )
+
   }
 
   search(event: Event) {
@@ -105,5 +60,38 @@ export class StockHomeComponent implements OnInit {
   clearSearch() {
     this.textSearch = '';
     this.search(null!);
+  }
+
+  onClickDeleteProduct(product: ProductResponse) {
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: `Delete Product ${product.name}`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        this.networkService.deleteProduct(product.id).subscribe(
+          data => {
+            Swal.fire(
+              'Deleted!',
+              'Your file hae been deleted.',
+              'success'
+            )
+            this.feedData()
+          },
+          error => {
+            alert(JSON.stringify(error.error.message))
+          }
+        )
+
+      }
+    })
+
+
   }
 }

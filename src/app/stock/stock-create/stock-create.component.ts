@@ -1,6 +1,8 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Product } from 'src/app/models/product.model';
+import { NetwortService } from 'src/app/service/networt.service';
 
 @Component({
   selector: 'app-stock-create',
@@ -12,7 +14,7 @@ export class StockCreateComponent implements OnInit {
   imagePreview: any;
   file: File;
 
-  constructor() { }
+  constructor(private networkService: NetwortService, private location: Location) { }
 
   ngOnInit(): void {
   }
@@ -32,16 +34,29 @@ export class StockCreateComponent implements OnInit {
   }
   onSubmit(productForm: NgForm) {
 
-    if(productForm.invalid){
+    if (productForm.invalid) {
       return;
     }
 
     const values = productForm.value;
     let product = new Product();
-    product.name =values.name;
-    product.price =values.price;
-    product.stock =values.stock;
-    product.image =this.file;
-    console.log(product);
+    product.name = values.name;
+    product.price = values.price;
+    product.stock = values.stock;
+    product.image = this.file;
+
+
+    this.networkService.addProduct(product).subscribe(
+      data => {
+        alert(JSON.stringify(data))
+        this.location.back()
+
+      },
+      error => {
+        alert(error.error.message)
+      }
+    )
   }
+
+
 }
