@@ -39,7 +39,7 @@ export class StockHomeComponent implements OnInit {
         })
       },
       error => {
-        alert(error)
+        console.log(error)
       },
       () => {
         console.log("feed network done")
@@ -85,7 +85,7 @@ export class StockHomeComponent implements OnInit {
             this.feedData()
           },
           error => {
-            alert(JSON.stringify(error.error.message))
+            console.log(JSON.stringify(error.error.message));
           }
         )
 

@@ -53,7 +53,7 @@ export class StockCreateComponent implements OnInit {
 
       },
       error => {
-        alert(error.error.message)
+        console.log(error.error.message)
       }
     )
   }

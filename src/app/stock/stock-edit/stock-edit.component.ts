@@ -40,7 +40,7 @@ export class StockEditComponent implements OnInit {
         this.productForm.setValue({id, name, price, stock})
       },
       error => {
-        alert(JSON.stringify(error.error.message))
+        console.log(JSON.stringify(error.error.message))
   }
     )
 }
@@ -79,7 +79,7 @@ onSubmit(productForm: NgForm) {
 
     },
     error => {
-      alert(error.error.message)
+      console.log(error.error.message)
     }
   )
 }
