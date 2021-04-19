@@ -28,6 +28,9 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { httpInterceptorProviders } from './interceptors';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ProgressComponent } from './progress/progress.component';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     SideNavComponent,
     StockHomeComponent,
     StockCreateComponent,
-    StockEditComponent
+    StockEditComponent,
+    ProgressComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +62,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     FormsModule,
     MatSortModule,
     MatPaginatorModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
+    OverlayModule
   ],
   providers: [
     httpInterceptorProviders
